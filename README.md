@@ -32,5 +32,5 @@ Follow these instructions to set up the project locally and deploy it to your AW
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/aws-cdk-serverless.git
+   git clone https://github.com/allan-lancioni/aws-cdk-serverless.git
    cd aws-cdk-serverless
