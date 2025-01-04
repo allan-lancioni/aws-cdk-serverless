@@ -2,8 +2,6 @@
 
 ![AWS](https://img.shields.io/badge/AWS-CDK-green)
 ![Serverless](https://img.shields.io/badge/Serverless-AWS_Lambda-blue)
-![License](https://img.shields.io/github/license/allan-lancioni/aws-cdk-serverless)
-![Build Status](https://img.shields.io/github/actions/workflow/status/allan-lancioni/aws-cdk-serverless/build.yml?branch=main)
 
 A modern and scalable serverless application built with [AWS CDK](https://aws.amazon.com/cdk/) and designed to run seamlessly in the AWS cloud. This project demonstrates how to define and deploy serverless architecture using AWS services such as Lambda, API Gateway, DynamoDB, and more.
 
