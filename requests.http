@@ -1,2 +1,10 @@
-GET https://gpaaru2r95.execute-api.sa-east-1.amazonaws.com/prod/spaces
+GET https://jvr2dcliw4.execute-api.sa-east-1.amazonaws.com/prod/spaces
+###
+
+POST https://jvr2dcliw4.execute-api.sa-east-1.amazonaws.com/prod/spaces
+Content-Type: application/json
+
+{
+  "location": "São Paulo"
+}
 ###

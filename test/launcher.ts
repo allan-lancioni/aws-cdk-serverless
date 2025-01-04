@@ -1,3 +1,10 @@
-import { handler } from "../src/services/hello";
+import { handler } from "../src/services/spaces/handlers";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-handler({} as any, {} as any);
+handler({
+  httpMethod: "POST",
+  body: JSON.stringify({
+    location: "California",
+  }),
+} as any, {} as any);
