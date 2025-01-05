@@ -1,24 +1,25 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { v4 as uuidV4 } from "uuid";
-import { APIHelper } from "../../infra/shared/APIHelper";
-import { APIError } from "../../infra/shared/ApiErrors";
+import { APIValidator } from "../shared/utils/APIValidator";
+import { APIError } from "../shared/utils/ApiErrors";
+import { marshall } from "@aws-sdk/util-dynamodb";
+import { randomUUID } from "crypto";
 
 async function postSpaces(
   event: APIGatewayProxyEvent,
   ddbClient: DynamoDBClient
 ): Promise<APIGatewayProxyResult> {
-  const body = APIHelper.validateRequestBody(event, ["location"]);
+  const body = APIValidator.validateRequestBody(event, ["location"]);
   if (body instanceof APIError) {
     return body;
   }
 
-  const id = uuidV4();
+  const id = randomUUID();
 
-  const item = {
-    Id: { S: id },
-    Location: { S: body.location },
-  };
+  const item = marshall({
+    Id: id,
+    Location: body.location,
+  });
 
   const result = await ddbClient.send(
     new PutItemCommand({
@@ -31,7 +32,7 @@ async function postSpaces(
     statusCode: 201,
     body: JSON.stringify({
       message: "Space created!",
-      result: JSON.stringify(id),
+      result: id,
     }),
   };
 }

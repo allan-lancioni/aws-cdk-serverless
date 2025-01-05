@@ -3,9 +3,16 @@ import {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
+import {
+  APIError,
+  MethodNotAllowed,
+  InternalServerError,
+} from "../shared/utils/ApiErrors";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { postSpaces } from "./PostSpaces";
-import * as APIErrors from "../../infra/shared/ApiErrors";
+import { getSpaces } from "./GetSpaces";
+import { putSpace } from "./PutSpace";
+import { deleteSpace } from "./DeleteSpace";
 
 const ddbClient = new DynamoDBClient();
 async function handler(
@@ -14,21 +21,23 @@ async function handler(
 ): Promise<APIGatewayProxyResult> {
   try {
     switch (event.httpMethod) {
-      // case "GET":
-      //   message = "GET: Hello World";
-      //   break;
-      // return getHandler(event, context);
+      case "GET":
+        return getSpaces(event, ddbClient);
       case "POST":
         return postSpaces(event, ddbClient);
+      case "PUT":
+        return putSpace(event, ddbClient);
+      case "DELETE":
+        return deleteSpace(event, ddbClient);
       default:
-        return new APIErrors.MethodNotAllowed();
+        return new MethodNotAllowed();
     }
   } catch (error) {
-    if (error instanceof APIErrors.APIError) {
+    if (error instanceof APIError) {
       return error;
     }
 
-    return new APIErrors.InternalServerError();
+    return new InternalServerError();
   }
 }
 

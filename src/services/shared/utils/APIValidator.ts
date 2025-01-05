@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { BadRequest } from "./ApiErrors";
 
-export class APIHelper {
+export class APIValidator {
   static validateRequestBody(
     event: APIGatewayProxyEvent,
     requiredFields: string[]
@@ -25,5 +25,9 @@ export class APIHelper {
     }
 
     return body;
+  }
+
+  static validateModal() {
+    
   }
 }
