@@ -7,7 +7,7 @@ import {
   APIError,
   MethodNotAllowed,
   InternalServerError,
-} from "../shared/utils/ApiErrors";
+} from "../shared/utils/APIErrors";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { postSpaces } from "./PostSpaces";
 import { getSpaces } from "./GetSpaces";
@@ -22,13 +22,13 @@ async function handler(
   try {
     switch (event.httpMethod) {
       case "GET":
-        return getSpaces(event, ddbClient);
+        return await getSpaces(event, ddbClient);
       case "POST":
-        return postSpaces(event, ddbClient);
+        return await postSpaces(event, ddbClient);
       case "PUT":
-        return putSpace(event, ddbClient);
+        return await putSpace(event, ddbClient);
       case "DELETE":
-        return deleteSpace(event, ddbClient);
+        return await deleteSpace(event, ddbClient);
       default:
         return new MethodNotAllowed();
     }

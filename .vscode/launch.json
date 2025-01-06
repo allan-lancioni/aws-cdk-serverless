@@ -13,11 +13,8 @@
         "ts-node/register" 
       ],
       "args": [
-        "./debug/launcher.ts"
-      ],
-      "env": {
-        "AWS_REGION": "sa-east-1",
-      }
+        "./test/launcher.ts"
+      ]
     }
   ]
 }

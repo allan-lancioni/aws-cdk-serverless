@@ -1,0 +1,34 @@
+@url = https://jvr2dcliw4.execute-api.sa-east-1.amazonaws.com/prod/spaces
+@token = eyJraWQiOiJaUkRPVjNER2VkWHRqYlwvQXAzaU9YV2pOQURuNXYwWTVQYkJBbUpka1RrQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI2M2VjYmFlYS1kMDMxLTcwZjEtZGM2ZC1lYzA3MmU5YWQyZjciLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuc2EtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3NhLWVhc3QtMV9wQUF3WWplTEIiLCJjb2duaXRvOnVzZXJuYW1lIjoidGVzdHVzZXIiLCJvcmlnaW5fanRpIjoiZDE0NjAwNmEtYWZkMC00NTk1LWJjY2YtODY3MjM1ZWY4OGRkIiwiYXVkIjoiM3A3bzJvM2plaGlyb2d1MnVsMjZrczM1Zm4iLCJldmVudF9pZCI6ImZhODRkOGEwLTQzNGQtNDlkYy1iMjA0LWNmOTczYTE4NWVhOCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzM2MTMxNzczLCJleHAiOjE3MzYxMzUzNzMsImlhdCI6MTczNjEzMTc3MywianRpIjoiNTRkN2VlZDUtNWU3Yy00ZWYxLWFjYTgtNWI3MjIzYWJjODkzIiwiZW1haWwiOiJ0ZXN0dXNlckBleGFtcGxlLmNvbSJ9.iz3s_M0HQUJqmqxVKJHaYSnwSwtY8ucHokoO32n1jmalIMQBdm_3WIA9eMmezhjblE5F2W0ZeD6-l7pKhpliA7XYjSym-TXIViQ-wNrNbzxPmLKjK7sKbLg0NeqY0QYpKQ-va-PtTQCMa2gpBnUsDkfS4m528pn25AY_OSVM2MRJz54Ly5qcXeHRB52fNsMJjkadM7XaotYTS-3Y6Ia_6IsfgKiBFNaASLOotivJ_wECI9dndDqO9W2o24CYqky-LW5y2t2AShylgeVdspOZ0Cf5kAFUvbnnEfaqMEQLH-T-5BBMVJCj0bxxmJholVQ_7TgxRMjjcYCq86mYf9e-rA
+@spaceId = 6edcf239-9b59-4acc-a128-3028b6f0a2dc
+
+GET {{url}}
+Authorization: {{token}}
+###
+
+GET {{url}}?id={{spaceId}}
+Authorization: {{token}}
+###
+
+POST {{url}}
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "location": "Buenos Aires"
+}
+###
+
+PUT {{url}}?id={{spaceId}}
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "location": "Amsterdam"
+
+}
+###
+
+DELETE {{url}}?id={{spaceId}}
+Authorization: {{token}}
+###

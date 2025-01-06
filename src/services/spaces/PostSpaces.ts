@@ -1,7 +1,7 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { APIValidator } from "../shared/utils/APIValidator";
-import { APIError } from "../shared/utils/ApiErrors";
+import { APIError } from "../shared/utils/APIErrors";
 import { marshall } from "@aws-sdk/util-dynamodb";
 import { randomUUID } from "crypto";
 
@@ -10,9 +10,6 @@ async function postSpaces(
   ddbClient: DynamoDBClient
 ): Promise<APIGatewayProxyResult> {
   const body = APIValidator.validateRequestBody(event, ["location"]);
-  if (body instanceof APIError) {
-    return body;
-  }
 
   const id = randomUUID();
 

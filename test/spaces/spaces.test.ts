@@ -1,17 +1,14 @@
-import { APIGatewayProxyResult } from "aws-lambda";
-import { handler as spacesHandler } from "../src/services/spaces/handlers";
-import * as dotenv from "dotenv";
-dotenv.config();
+import { handler as spacesHandler } from "../../src/services/spaces/handlers";
 
 const context: any = {};
 
 (async () => {
   const responses = await Promise.all([
-    createSpace(),
+    // createSpace(),
     // getAllSpaces(),
     // getSpaceById(),
     // updateSpace(),
-    // deleteSpace(),
+    deleteSpace(),
   ]);
 
   console.log(responses.map((r) => {
@@ -32,7 +29,7 @@ async function createSpace() {
       {
         httpMethod: "POST",
         body: JSON.stringify({
-          location: "Santiago",
+          location: "Maranhão",
         })
       } as any,
       context
@@ -87,7 +84,7 @@ async function deleteSpace() {
     res: await spacesHandler({ 
       httpMethod: "DELETE",
       queryStringParameters: {
-        id: "5025d090-ce30-4bbe-90ed-fc4dd827aa52"
+        id: "f1c7ba1d-6b5f-457c-994a-7d9494adae30"
       }
     } as any, context),
   };

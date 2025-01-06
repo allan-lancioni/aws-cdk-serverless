@@ -7,7 +7,7 @@ import { ITable } from "aws-cdk-lib/aws-dynamodb";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
-interface LambdaStackProps extends StackProps {
+export interface LambdaStackProps extends StackProps {
   spacesTable: ITable;
 }
 

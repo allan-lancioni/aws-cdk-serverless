@@ -18,6 +18,12 @@ export class BadRequest extends APIError {
   }
 }
 
+export class Unauthorized extends APIError {
+  constructor(response: Response = "Unauthorized") {
+    super(401, response);
+  }
+}
+
 export class MethodNotAllowed extends APIError {
   constructor(response: Response = "Method Not Allowed") {
     super(405, response);

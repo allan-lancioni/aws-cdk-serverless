@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { BadRequest } from "./ApiErrors";
+import { BadRequest, Unauthorized } from "./APIErrors";
 
 export class APIValidator {
   static validateRequestBody(
@@ -7,19 +7,19 @@ export class APIValidator {
     requiredFields: string[]
   ) {
     if (!event.body) {
-      return new BadRequest("Missing request body");
+      throw new BadRequest("Missing request body");
     }
     let body;
     try {
       body = JSON.parse(event.body);
     } catch (error) {
-      return new BadRequest("Invalid JSON format");
+      throw new BadRequest("Invalid JSON format");
     }
 
     const missingFields = requiredFields.filter((field) => !body[field]);
     if (missingFields.length > 0) {
       const fields = missingFields.join(", ");
-      return new BadRequest(
+      throw new BadRequest(
         `The following fields are required in the request body: ${fields}`
       );
     }
@@ -27,7 +27,16 @@ export class APIValidator {
     return body;
   }
 
-  static validateModal() {
-    
+  static hasAdminAccess(event: APIGatewayProxyEvent): boolean {
+    const groups = event.requestContext?.authorizer?.claims["cognito:groups"];
+    return groups?.includes("Admin") ?? false;
   }
+
+  static validateAdminAccess(event: APIGatewayProxyEvent): void {
+    if (!this.hasAdminAccess(event)) {
+      throw new Unauthorized();
+    }
+  }
+
+  static validateModal() {}
 }

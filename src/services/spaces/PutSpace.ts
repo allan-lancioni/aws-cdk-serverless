@@ -1,7 +1,7 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { APIValidator } from "../shared/utils/APIValidator";
-import { APIError, BadRequest } from "../shared/utils/ApiErrors";
+import { APIError, BadRequest } from "../shared/utils/APIErrors";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
 async function putSpace(

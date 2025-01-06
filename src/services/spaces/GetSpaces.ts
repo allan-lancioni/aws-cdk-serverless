@@ -4,7 +4,7 @@ import {
   ScanCommand,
 } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { BadRequest } from "../shared/utils/ApiErrors";
+import { BadRequest } from "../shared/utils/APIErrors";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
 async function getSpaces(
