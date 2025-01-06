@@ -1,3 +1,4 @@
+import { UiDeploymentStack } from "./stacks/UiDeploymentStack";
 import { App } from "aws-cdk-lib";
 import { DataStack } from "./stacks/DataStack";
 import { LambdaStack } from "./stacks/LambdaStack";
@@ -18,3 +19,5 @@ const apiStack = new ApiStack(app, "ApiStack", {
   spacesLambdaIntegration: lambdaStack.spacesLambdaIntegration,
   userPool: authStack.userPool,
 });
+
+const uiStack = new UiDeploymentStack(app, "UiDeploymentStack");
